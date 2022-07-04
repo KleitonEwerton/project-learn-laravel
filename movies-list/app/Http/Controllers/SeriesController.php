@@ -1,23 +1,28 @@
 <?php
 namespace App\Http\Controllers;
-
-class SeriesController{
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+//artisan serve
+class SeriesController extends Controller{
     
-    public function seriesList(){
-        $series = ["Lost", "Arcane", "Breaking Bad", "The Big Bang Theory", "The Walking Dead"];
-        
-        $html = '<ul>';
+    public function index(){
 
-        foreach($series as $serie):
+        $series = DB::select("SELECT name FROM series");
+        // DB::delete('DELETE from series');
+        // dd($series);
+        return view("series.index")->with('series', $series);
 
-            $html .= '<li> '.$serie. '</li>';
+    }
 
-        endforeach;
+    public function create(){
+        return view("series.create");
+    }
 
-        $html .= "</ul>";
+    public function save(Request $request){
 
-        echo $html;
-
+        $name = $request->input('name');
+        DB::insert('INSERT INTO series (name) values (?)', [$name]);
+        return redirect('/series');
     }
 
 
