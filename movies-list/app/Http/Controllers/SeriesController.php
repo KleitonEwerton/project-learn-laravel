@@ -25,5 +25,11 @@ class SeriesController extends Controller{
         return redirect('/series');
     }
 
+    public function delete(Request $request){
+        $name = $request->input('name');
+        DB::delete('DELETE from series WHERE (name) = ?', [$name]);
+        return redirect('/series');
+
+    }
 
 }

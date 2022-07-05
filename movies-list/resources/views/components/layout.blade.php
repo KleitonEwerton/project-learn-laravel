@@ -14,9 +14,9 @@
 
 <body>
 
-    <div class="container d-flex justify-content-center">
+    <nav class="navbar navbar-default navbar-fixed-top bg-light d-flex justify-content-center"><a href="/series"><img src="{{asset('images/logo.png')}}" alt="" style="max-width:200px;"></a></nav>
+    <div class=" d-flex justify-content-center">
         <div class="d-flex flex-column">
-                <img src="{{asset('images/logo.png')}}" alt="" style="max-width:200px;">
 
                 {{$slot}}
         </div>
